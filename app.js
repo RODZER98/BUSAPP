@@ -1,8 +1,11 @@
-//require('dotenv').config()
+require('dotenv').config()
 const express = require('express')
 const app = express()
-//const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 const path = require('path')
+//const userRouter = require('./controllers/usuario')
+//const taskRouter = require('./controllers/tarea')
+const mongoose = require('mongoose')
 
 //conexion a BD
 
