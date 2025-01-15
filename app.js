@@ -9,7 +9,7 @@ const path = require('path')
 //conexion a BD
 
     try{
-        mongoose.connect(process.env.MONGO_URL)
+        mongoose.connect(process.env.MONGO_URI)
         console.log('Conexion a BD correcta')
     } catch(error) {
         console.log(error)
