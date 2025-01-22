@@ -20,4 +20,9 @@ const path = require('path')
 //crear rutas de front end
 
 app.use('/', express.static(path.resolve('views','home')))
+app.use('/', express.static(path.resolve('views','pagos')))
+app.use('/', express.static(path.resolve('views','geo')))
+app.use('/', express.static(path.resolve('views','login')))
+app.use('/', express.static(path.resolve('views','registro')))
+
 module.exports = app
