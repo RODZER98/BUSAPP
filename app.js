@@ -9,14 +9,15 @@ const userRouter = require('./controllers/usuario')
 //conexion a BD
 
     
-    (async()=>{
+    //(async()=>{
     try{
-        await mongoose.connect(process.env.MONGO_URI)
+        //await 
+        mongoose.connect(process.env.MONGO_URI)
         console.log('Conexion a BD correcta')
     } catch(error){
         console.log(error)
     }
-    })()
+   // })()
     
 
 
