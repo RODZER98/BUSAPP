@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const path = require('path')
-//const userRouter = require('./controllers/usuario')
+const userRouter = require('./controllers/usuario')
 //const taskRouter = require('./controllers/tarea')
 
 //conexion a BD
@@ -24,7 +24,7 @@ const path = require('path')
 //crear rutas de front end
 
 app.use('/', express.static(path.resolve('views','home')))
-app.use('/components',express.static(path.resolve('views','components')))
+app.use('/components', express.static(path.resolve('views','components')))
 app.use('/pagos', express.static(path.resolve('views','pagos')))
 app.use('/geo', express.static(path.resolve('views','geo')))
 app.use('/login', express.static(path.resolve('views','login')))
