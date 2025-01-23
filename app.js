@@ -8,21 +8,26 @@ const path = require('path')
 
 //conexion a BD
 
+    
+    (async()=>{
     try{
-        mongoose.connect(process.env.MONGO_URI)
+         mongoose.connect(process.env.MONGO_URI)
         console.log('Conexion a BD correcta')
-    } catch(error) {
+    } catch(error){
         console.log(error)
     }
+    })()
+    
 
 
 
 //crear rutas de front end
 
 app.use('/', express.static(path.resolve('views','home')))
-app.use('/', express.static(path.resolve('views','pagos')))
-app.use('/', express.static(path.resolve('views','geo')))
-app.use('/', express.static(path.resolve('views','login')))
-app.use('/', express.static(path.resolve('views','registro')))
+app.use('/components',express.static(path.resolve('views','components')))
+app.use('/pagos', express.static(path.resolve('views','pagos')))
+app.use('/geo', express.static(path.resolve('views','geo')))
+app.use('/login', express.static(path.resolve('views','login')))
+app.use('/registro', express.static(path.resolve('views','registro')))
 
-module.exports = app
+module.exports = app;
