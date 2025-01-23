@@ -1,4 +1,4 @@
-//1. hacer el rauter
+/*//1. hacer el rauter
 //rauter: es el que me permite hacer el CRUD, POST, GET, DELETE, UPDATE --- http
 const userRouter = require('express').Router()
 const User = require('../models/usuarios')
@@ -53,4 +53,4 @@ userRouter.get('/lista-users',async(req,res)=>{
 
 module.exports = userRouter
 
-//dentro de los controladores van todas las funciones de CRUD
+//dentro de los controladores van todas las funciones de CRUD*/
