@@ -1,12 +1,12 @@
 //console.log('prueba')
-
+import { createNotification } from '../components/notificaciones.js';
 const formulario = document.querySelector('#formulario');
 const nameInput = document.querySelector('#name-input');
 const emailInput = document.querySelector('#email-input');
 const passwordInput = document.querySelector('#password-input');
 const matchInput = document.querySelector('#match-input');
 const btnRegistro = document.querySelector('#form-btn');
-import { createNotification } from '../components/notificaciones.js';
+//import { createNotification } from '../components/notificaciones.js';
 const notification = document.querySelector('#notification');
 //console.log(axios);
 //import express from 'express';
@@ -23,7 +23,8 @@ let valpass = false;
 let valmatch = false;
 let valname = false;
 
-nameInput.addEventListener('change', (e) => {
+nameInput.addEventListener('input', (e) => {
+  console.log(e.target.value);
   valname = nameVal.test(e.target.value);
   validar(nameInput, valname);
 
@@ -39,24 +40,24 @@ nameInput.addEventListener('change', (e) => {
 });
 
 emailInput.addEventListener('input', (e) => {
-  //console.log(e.target.value);
+  console.log(e.target.value);
   valemail = emailVal.test(e.target.value);
-  //console.log(valemail);
+  console.log(valemail);
   validar(emailInput, valemail);
 });
 
 passwordInput.addEventListener('input', (e) => {
-  //console.log(e.target.value);
+  console.log(e.target.value);
   valpass = passwordVal.test(e.target.value);
-  //console.log(valpass)
+  console.log(valpass)
   validar(passwordInput, valpass);
   validar(matchInput, valmatch);
 });
 
 matchInput.addEventListener('input', (e) => {
-  //console.log(e.target.value);
+  console.log(e.target.value);
   valmatch = e.target.value === passwordInput.value;
-  //console.log(valmatch)
+  console.log(valmatch)
   validar(matchInput, valmatch);
   validar(passwordInput, valpass);
 });

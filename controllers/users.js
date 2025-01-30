@@ -5,6 +5,7 @@ const User = require('../models/user');
 
 //registrar la informacion que el usuario envia atraves del formulario
 userRouter.post('/', (request, response) => {
+  console.log(request.body);
   const { name, email, password, password2 } = request.body;
   console.log(name, email, password, password2);
 
@@ -18,8 +19,8 @@ userRouter.post('/', (request, response) => {
     //guardar en la bd
     let usuario = new User();
 
-    usuario.nombre = name;
-    usuario.correo = email;
+    usuario.name = name;
+    usuario.email = email;
     usuario.password = password;
 
     async function guardarUsuario() {

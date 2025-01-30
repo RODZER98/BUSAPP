@@ -21,7 +21,7 @@ const userRouter = require('./controllers/users')
     } catch(error){
         console.log(error)
     }
-   // })()
+   //})()
     
 
 
@@ -35,6 +35,9 @@ app.use('/login', express.static(path.resolve('views','login')))
 app.use('/admin', express.static(path.resolve('views','admin')))
 app.use('/registro', express.static(path.resolve('views','registro')))
 app.use('/images',express.static(path.resolve('img')))
+
+//ojo super super importante el app.use
+app.use(express.json());
 
 //rutas de backend
 app.use('/api/users',userRouter);
