@@ -4,23 +4,44 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planes de Pago - BUSAPP</title>
-  <link rel="stylesheet" href="payment.css">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<body>
-  <header>
-    <h1>Planes de Pago</h1>
+<body class="bg-black text-white">
+  <header class="bg-gray-900 text-white p-4"></header>
+    <h1 class="text-2xl font-bold">Planes de Pago</h1>
   </header>
 
-  <main>
-    <div id="plans-container" class="plans-container">
-      <!-- Los planes se cargarán aquí dinámicamente -->
+  <main class="p-4">
+    <div id="plans-container" class="plans-container grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Plan 1 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+        <h2 class="text-xl font-bold mb-2">Plan Básico</h2>
+        <p class="text-gray-400 mb-4">1 dólar por 5 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$1</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
+      <!-- Plan 2 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+        <h2 class="text-xl font-bold mb-2">Plan Estándar</h2>
+        <p class="text-gray-400 mb-4">5 dólares por 15 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$5</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
+      <!-- Plan 3 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+        <h2 class="text-xl font-bold mb-2">Plan Premium</h2>
+        <p class="text-gray-400 mb-4">10 dólares por 25 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$10</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
     </div>
   </main>
 
-  <footer>
+  <footer class="bg-gray-900 text-white p-4 text-center"></footer>
     <p>© 2025 BUSAPP. Todos los derechos reservados.</p>
   </footer>
 
-  <script src="payment.js"></script>
+  <script src="pagos.js"></script>
 </body>
 </html>

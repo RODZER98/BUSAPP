@@ -4,49 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Login</title>
 </head>
-<body>
+<body class="bg-gray-900 text-white"></body>
 
-    <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-blue-900 h-16">
+    <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-black h-16 shadow-lg">
     </nav>
 
     <div class="pt-16 h-screen px-4 flex max-w-7xl mx-auto justify-center items-center">
-        <form id="formulario" class="flex flex-col gap-4 bg-blue-600 p-4 rounded-lg text-lg lg:w-2/4 shadow-xl">
+        <form id="formulario" class="flex flex-col gap-4 bg-gray-800 p-6 rounded-lg text-lg lg:w-2/4 shadow-2xl">
             
             <div class="flex flex-col gap-2">
-                <label for="email-imput" class="font-bolt">
+                <label for="email-input" class="font-bold">
                     Email <span class="text-red-500">*</span>
                 </label>
                 <input 
                 type="email"
-                id="email-imput"
+                id="email-input"
                 autocomplete="off"
                 placeholder="rodney@gmail.com"
-                class="rounde-lg p-2 focus:outline-blue-600">
+                class="rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-700 text-white">
 
             </div>
 
             <div class="flex flex-col gap-2">
-                <label for="password-imput" class="font-bolt">
+                <label for="password-input" class="font-bold">
                     Password <span class="text-red-500">*</span>
                 </label>
                 <input 
                 type="password"
-                id="password-imput"
+                id="password-input"
                 autocomplete="off"
-                class="rounde-lg p-2 focus:outline-blue-600">
-                <p id="texto-error"></p>
+                class="rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-gray-700 text-white">
+                <p id="texto-error" class="text-red-500"></p>
             </div>
 
-            <button class="bg-blue-900 px-4 rounded-lg font-bold text-white hover:bg-blue-400 py-2 transition ease-in-out">Iniciar Sesion</button>
+            <button class="bg-black px-4 rounded-lg font-bold text-white hover:bg-gray-700 py-2 transition ease-in-out">Iniciar Sesión</button>
         </form>
    </div>
 
-    
-    <script src="../components/nav.js"></script>
-    
+   <footer class="bg-gray-900 text-white p-4 text-center"></footer>
+    <p>© 2025 BUSAPP. Todos los derechos reservados.</p>
+  </footer>
 
+    <script src="../components/nav.js"></script>
+    <script src="login.js"></script>
 
 </body>
 </html>
