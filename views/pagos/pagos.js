@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', async () => {
+/*document.addEventListener('DOMContentLoaded', async () => {
     const plansContainer = document.getElementById('plans-container');
   
     // Fetch plans from backend
@@ -66,4 +66,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert('Error de red al realizar el pago');
       }
     }
-  });
+  });*/

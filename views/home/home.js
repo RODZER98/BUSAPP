@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+/*document.addEventListener('DOMContentLoaded', () => {
     const loginButton = document.querySelector('a[href="/login/"]');
     const registroButton = document.querySelector('a[href="/registro/"]');
     const title = document.querySelector('h1');
@@ -43,4 +43,4 @@ document.addEventListener('DOMContentLoaded', () => {
     paragraph.addEventListener('click', () => {
         paragraph.style.backgroundColor = 'yellow';
     });
-});
+});*/
