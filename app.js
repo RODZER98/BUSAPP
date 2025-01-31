@@ -38,6 +38,10 @@ app.use('/images',express.static(path.resolve('img')))
 
 //ojo super super importante el app.use
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
+app.use(morgan('tiny'));
+
 
 //rutas de backend
 app.use('/api/users',userRouter);
