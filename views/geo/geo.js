@@ -1,36 +1,3 @@
-/*const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-
-let myMap = L.map('myMap').setView([10.47504, -66.89622],13)
-
-L.tileLayer(tilesProvider, {
-    maxZoom: 40, 
-}).addTo(myMap)
-
-let marker = L.marker([10.47504, -66.89622]).addTo(myMap)
-
-let marker2 = L.marker([10.47826, -66.90065]).addTo(myMap)
-
-let marker3 = L.marker([10.48123, -66.90395]).addTo(myMap)
-
-let marker4 = L.marker([10.48306, -66.90604]).addTo(myMap)
-
-let marker5 = L.marker([10.48618, -66.90957]).addTo(myMap)
-
-let marker6 = L.marker([10.4907, -66.9113]).addTo(myMap)
-
-let marker7 = L.marker([10.49751, -66.91067]).addTo(myMap)
-
-let marker8 = L.marker([10.50232, -66.90984]).addTo(myMap)
-
-let marker9 = L.marker([10.50857, -66.90855]).addTo(myMap)
-
-let marker10 = L.marker([10.51208, -66.90793]).addTo(myMap)
-
-let marker11 = L.marker([10.5145, -66.90744]).addTo(myMap)
-
-
-myMap.doubleClickZoom.disable()*/
-
 
         const tilesProvider = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         let myMap = L.map('myMap').setView([10.47504, -66.89622], 13);
@@ -102,8 +69,14 @@ myMap.doubleClickZoom.disable()*/
                 let line = L.polyline([locations[i - 1].coords, locations[i].coords], { color: 'blue', weight: 3 }).addTo(myMap);
                 rutas.push(line);
             }
+
+            marker.on('click', function() {
+                myMap.setView(marker.getLatLng(), 15);
+            });
         }
 
         actualizarTiempos();
+
+        document.getElementById("speedSelector").addEventListener("change", actualizarTiempos);
    
 

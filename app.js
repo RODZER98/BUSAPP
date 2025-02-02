@@ -33,6 +33,7 @@ app.use('/pagos', express.static(path.resolve('views','pagos')))
 app.use('/geo', express.static(path.resolve('views','geo')))
 app.use('/login', express.static(path.resolve('views','login')))
 app.use('/admin', express.static(path.resolve('views','admin')))
+app.use('/perfil', express.static(path.resolve('views','perfil')))
 app.use('/registro', express.static(path.resolve('views','registro')))
 app.use('/images',express.static(path.resolve('img')))
 
