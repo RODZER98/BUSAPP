@@ -4,7 +4,7 @@ const crearNavHome = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -24,7 +24,7 @@ const crearNavHome = () => {
                 <a href="/registro/" class="bg-white text-black font-bold py-2 px-4 hover:bg-gray-700 rounded-lg transition ease-in-out">Registro</a>
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -39,7 +39,7 @@ const crearNavRegistro = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -59,7 +59,7 @@ const crearNavRegistro = () => {
             
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -74,7 +74,7 @@ const crearNavLogin = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -94,7 +94,7 @@ const crearNavLogin = () => {
             <a href="/registro/" class="bg-white text-black font-bold py-2 px-4 hover:bg-gray-700 rounded-lg transition ease-in-out">Registro</a>
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -109,7 +109,7 @@ const crearNavPagos = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -129,7 +129,7 @@ const crearNavPagos = () => {
             <a href="/geo/" class="bg-white text-black font-bold py-2 px-4 hover:bg-gray-700 rounded-lg transition ease-in-out">Geolocalizacion</a>
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -144,7 +144,7 @@ const crearNavGeo = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -165,7 +165,7 @@ const crearNavGeo = () => {
             <a href="/perfil/" class="bg-white text-black font-bold py-2 px-4 hover:bg-gray-700 rounded-lg transition ease-in-out">Perfil</a>
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');
@@ -180,7 +180,7 @@ const crearNavPerfil = () => {
     navegacion.innerHTML = `
      <div class="max-w-7xl h-16 mx-auto flex items-center px-4 justify-between bg-black">
 
-            <p class="text-white font-bold text-xl">BUSAPP</p>
+            <a href="/" class="text-white font-bold text-xl">BUSAPP</a>
     
             <!--movil-->
             <svg id="menu-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10 md:hidden text-white cursor-pointer p-2 rounded-lg hover:bg-gray-700">
@@ -201,7 +201,7 @@ const crearNavPerfil = () => {
             <a href="/geo/" class="bg-white text-black font-bold py-2 px-4 hover:bg-gray-700 rounded-lg transition ease-in-out">Geolocalizacion</a>
             </div>
 
-        </div>
+    </div>
 `
 
     const menuToggle = document.getElementById('menu-toggle');

@@ -10,40 +10,79 @@
 <body class="bg-black text-white">
 
   <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-gray-800 h-16 shadow-lg">
+   
   </nav>
 
-  <header class="bg-gray-900 text-white p-4"></header>
-    <h1 class="text-2xl font-bold">Planes de Pago</h1>
-  </header>
+  
 
-  <main class="p-4">
+  <main class="p-4 mt-16"></main>
+
+  <h1 class="bg-gray-900 text-white p-4 text-center">
+    <span class="text-2xl font-bold">Planes de Pago</span>
+  </h1>
     <div id="plans-container" class="plans-container grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Plan 1 -->
-      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Básico" class="w-full h-48 object-contain mb-4 rounded-lg">
         <h2 class="text-xl font-bold mb-2">Plan Básico</h2>
         <p class="text-gray-400 mb-4">1 dólar por 5 viajes en bus.</p>
         <p class="text-white font-bold text-2xl mb-4">$1</p>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
       </div>
       <!-- Plan 2 -->
-      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Estándar" class="w-full h-48 object-contain mb-4 rounded-lg">
         <h2 class="text-xl font-bold mb-2">Plan Estándar</h2>
         <p class="text-gray-400 mb-4">5 dólares por 15 viajes en bus.</p>
         <p class="text-white font-bold text-2xl mb-4">$5</p>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
       </div>
       <!-- Plan 3 -->
-      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105">
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Premium" class="w-full h-48 object-contain mb-4 rounded-lg">
         <h2 class="text-xl font-bold mb-2">Plan Premium</h2>
         <p class="text-gray-400 mb-4">10 dólares por 25 viajes en bus.</p>
         <p class="text-white font-bold text-2xl mb-4">$10</p>
         <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
       </div>
+      <!-- Plan 4 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Avanzado" class="w-full h-48 object-contain mb-4 rounded-lg">
+        <h2 class="text-xl font-bold mb-2">Plan Avanzado</h2>
+        <p class="text-gray-400 mb-4">20 dólares por 50 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$20</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
+      <!-- Plan 5 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Profesional" class="w-full h-48 object-contain mb-4 rounded-lg">
+        <h2 class="text-xl font-bold mb-2">Plan Profesional</h2>
+        <p class="text-gray-400 mb-4">50 dólares por 100 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$50</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
+      <!-- Plan 6 -->
+      <div class="bg-gray-800 p-6 rounded-lg shadow-lg transform transition-transform hover:scale-105 text-center">
+        <img src="/images/viajeros.svg" alt="Plan Empresarial" class="w-full h-48 object-contain mb-4 rounded-lg">
+        <h2 class="text-xl font-bold mb-2">Plan Empresarial</h2>
+        <p class="text-gray-400 mb-4">100 dólares por 200 viajes en bus.</p>
+        <p class="text-white font-bold text-2xl mb-4">$100</p>
+        <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">Suscribirse</button>
+      </div>
     </div>
   </main>
 
-  <footer class="bg-gray-900 text-white p-4 text-center"></footer>
-    <p>© 2025 BUSAPP. Todos los derechos reservados.</p>
+  <footer id="pie" class="bg-gray-900 text-white p-4 text-center mt-4">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="mb-2 md:mb-0">© 2025 BUSAPP. Todos los derechos reservados.</p>
+          <div class="flex space-x-4">
+              <a href="#" class="hover:text-gray-400">Política de Privacidad</a>
+              <a href="#" class="hover:text-gray-400">Términos de Servicio</a>
+              <a href="#" class="hover:text-gray-400">Contacto</a>
+          </div>
+      </div>
+  </div>
   </footer>
 
   <script src="../components/nav.js"></script>
