@@ -8,6 +8,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const userRouter = require('./controllers/users')
+const adminRouter = require('./controllers/admins')
 //const taskRouter = require('./controllers/tarea')
 
 //conexion a BD
@@ -46,5 +47,6 @@ app.use(morgan('tiny'));
 
 //rutas de backend
 app.use('/api/users',userRouter);
+app.use('/api/admins',adminRouter);
 
 module.exports = app;

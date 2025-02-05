@@ -9,17 +9,14 @@
 </head>
 <body>
 
+  <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-gray-800 h-16 shadow-lg">
+    <h1 class="text-xl font-bold">Admin Panel</h1>
+  </nav>
+  
   <div class="min-h-screen flex flex-col">
     <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
       <h1 class="text-2xl font-bold">Admin Panel</h1>
-      <nav>
-        <ul class="flex space-x-4">
-          <li><a href="#" class="hover:text-gray-400">Dashboard</a></li>
-          <li><a href="#" class="hover:text-gray-400">Users</a></li>
-          <li><a href="#" class="hover:text-gray-400">Settings</a></li>
-          <li><a href="#" class="hover:text-gray-400">Logout</a></li>
-        </ul>
-      </nav>
+      
     </header>
     <main class="flex-grow p-6 bg-gray-100">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,5 +52,8 @@
       </div>
   </div>
   </footer>
+
+  <script src="../components/nav.js"></script>
+  <script type="module" src="adm.js"></script>
 </body>
 </html>
