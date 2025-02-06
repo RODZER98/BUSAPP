@@ -4,7 +4,7 @@ const adminRouter = require('express').Router();
 const Admin = require('../models/admin'); 
 
 //registrar la informacion que el usuario envia atraves del formulario
-adminRouter.post('/', (request, response) => {
+adminRouter.post('/admin', (request, response) => {
   console.log(request.body);
   const { name, email, password, password2 } = request.body;
   console.log(name, email, password, password2);

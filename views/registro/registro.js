@@ -16,7 +16,7 @@ const notification = document.querySelector('#notification');
 const emailVal =
   /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g;
 const passwordVal = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,16}$/gm;
-const nameVal = /^[a-zA-Z]+( [a-zA-Z]+)?$/g;
+const nameVal = /[a-zA-Z]+( [a-zA-Z]+)?$/g;
 
 let valemail = false;
 let valpass = false;
@@ -77,6 +77,7 @@ formulario.addEventListener('submit', async (e) => {
       const response = await axios.post('/api/users', newUser);
       createNotification(false, 'registro correcto');
       console.log(response);
+    
     } else {
       createNotification(
         true,
@@ -94,7 +95,7 @@ formulario.addEventListener('submit', async (e) => {
 
 const validar = (input, val) => {
   btnRegistro.disabled =
-    valname && valemail && valpass && valmatch ? false : false;
+    valname && valemail && valpass && valmatch ? false : true;
 
   //console.log(valname,valemail,valpass,valmatch);
 
@@ -115,3 +116,5 @@ const validar = (input, val) => {
     input.classList.add('focus:outline-red-700', 'outline-4');
   }
 };
+
+
