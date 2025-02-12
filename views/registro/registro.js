@@ -85,11 +85,11 @@ formulario.addEventListener('submit', async (e) => {
       );
     }
   } catch (error) {
-    createNotification(true, error.response.data.error);
+    //createNotification(true, response.data.error);
     setTimeout(() => {
       notification.innerHTML = '';
     }, 3000);
-    console.log(error.response.data.error);
+    console.log(error);
   }
 });
 

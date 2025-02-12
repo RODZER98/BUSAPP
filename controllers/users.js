@@ -2,6 +2,7 @@
 //router: registrar POST, GET, DELETE
 const userRouter = require('express').Router();
 const User = require('../models/user'); 
+const transporter = require('../email/enviarcorreo')
 
 //registrar la informacion que el usuario envia atraves del formulario
 userRouter.post('/', (request, response) => {
@@ -26,10 +27,28 @@ userRouter.post('/', (request, response) => {
     async function guardarUsuario() {
         await usuario.save();
         const usuarios = await User.find();
-        console.log(usuarios)
+       // console.log(usuarios)
     }
 
     guardarUsuario().catch(console.error);
+
+    // async..await is not allowed in global scope, must use a wrapper
+    async function main() {
+      console.log("hola mundo")
+      // send mail with defined transport object
+      const info = await transporter.sendMail({
+        from: 'Rodzer Testing rodzertesting@gmail.com', // sender address
+        to: "rodzertesting@gmail.com", // list of receivers
+        subject: "Test Email", // Subject line
+        text: "Este es un correo de prueba.", // plain text body
+        html: "<b>Este es un correo de prueba.</b>", // html body
+      });
+
+      console.log("Message sent: %s", info.messageId);
+      // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+    }
+
+    main().catch(console.error);
 
 
     return response
