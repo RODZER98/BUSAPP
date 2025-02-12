@@ -9,51 +9,70 @@
 </head>
 <body>
 
-  <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-gray-800 h-16 shadow-lg">
-  <h1 class="text-xl font-bold">Admin Panel</h1>
+  <nav id="navegacion" class="fixed top-0 right-0 left-0 bg-gray-800 h-16 shadow-lg flex items-center justify-center z-10">
+    <h1 class="text-xl font-bold text-white">Admin Panel</h1>
   </nav>
-  
-  <div class="min-h-screen flex flex-col">
-  <header class="bg-gray-800 text-white p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Admin Panel</h1>
-    
-  </header>
-  <main class="flex-grow p-6 bg-gray-100">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-xl font-semibold mb-2">Usuarios</h2>
-      <p class="text-gray-600">Gestionar cuentas y permisos de usuarios.</p>
-      <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">Ver Usuarios</button>
-    </div>
-    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-xl font-semibold mb-2">Informes</h2>
-      <p class="text-gray-600">Ver y generar informes.</p>
-      <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">Ver Informes</button>
-    </div>
-    <div class="bg-white p-4 rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-      <h2 class="text-xl font-semibold mb-2">Configuración</h2>
-      <p class="text-gray-600">Configurar ajustes de la aplicación.</p>
-      <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">Ver Configuración</button>
-    </div>
-    </div>
-  </main>
-  </div>
-    
 
-  <footer id="pie" class="bg-gray-900 text-white p-4 text-center mt-4">
-    <div class="container mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-          <p class="mb-2 md:mb-0">© 2025 BUSAPP. Todos los derechos reservados.</p>
-          <div class="flex space-x-4">
-              <a href="#" class="hover:text-gray-400">Política de Privacidad</a>
-              <a href="#" class="hover:text-gray-400">Términos de Servicio</a>
-              <a href="#" class="hover:text-gray-400">Contacto</a>
+        <!-- Modal for Usuarios -->
+        <div id="modalUsuarios" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+            <h2 class="text-2xl font-semibold mb-4">Administrar Usuarios</h2>
+            <p class="text-gray-600 mb-4">Aquí puedes gestionar cuentas y permisos de usuarios.</p>
+            <!-- Add your form or content here -->
+            <button id="closeModalUsuarios" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
           </div>
-      </div>
-  </div>
-  </footer>
+        </div>
+
+        <!-- Modal for Informes -->
+        <div id="modalInformes" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+            <h2 class="text-2xl font-semibold mb-4">Ver y Generar Informes</h2>
+            <p class="text-gray-600 mb-4">Aquí puedes ver y generar informes.</p>
+            <!-- Add your form or content here -->
+            <button id="closeModalInformes" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
+          </div>
+        </div>
+
+        <!-- Modal for Configuración -->
+        <div id="modalConfiguracion" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
+          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
+            <h2 class="text-2xl font-semibold mb-4">Configuración de la Aplicación</h2>
+            <p class="text-gray-600 mb-4">Aquí puedes configurar los ajustes de la aplicación.</p>
+            <!-- Add your form or content here -->
+            <button id="closeModalConfiguracion" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
+          </div>
+        </div>
+        <div class="container mx-auto mt-20"></div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <button id="btnUsuarios" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">
+              Administrar Usuarios
+            </button>
+            <button id="btnInformes" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors duration-300">
+              Ver y Generar Informes
+            </button>
+            <button id="btnConfiguracion" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors duration-300">
+              Configuración de la Aplicación
+            </button>
+          </div>
+        </div>
+
+        <footer id="pie" class="bg-gray-900 text-white p-4 text-center mt-4">
+          <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="mb-2 md:mb-0">© 2025 BUSAPP. Todos los derechos reservados.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-gray-400">Política de Privacidad</a>
+          <a href="#" class="hover:text-gray-400">Términos de Servicio</a>
+          <a href="#" class="hover:text-gray-400">Contacto</a>
+        </div>
+            </div>
+          </div>
+        </footer>
 
   <script src="../components/nav.js"></script>
   <script type="module" src="adm.js"></script>
 </body>
 </html>
+
+
+
