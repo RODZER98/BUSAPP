@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const usersRouter = require('../controllers/users');
 //paso 2: definir el schema
 const userSchema = new mongoose.Schema({
+    rol:String,
     name:String,
     email:String,
     password:String,
