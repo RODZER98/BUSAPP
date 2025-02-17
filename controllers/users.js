@@ -23,11 +23,12 @@ userRouter.post('/', (request, response) => {
     usuario.name = name;
     usuario.email = email;
     usuario.password = password;
+    usuario.rol = 'user';
 
     async function guardarUsuario() {
         await usuario.save();
         const usuarios = await User.find();
-       // console.log(usuarios)
+        console.log(usuarios)
     }
 
     guardarUsuario().catch(console.error);
@@ -70,6 +71,8 @@ userRouter.get('/lista-users',async(req,res)=>{
   try{
         
       const listado = await User.find()
+
+      console.log(listado)
         
       return res.status(200).json({textOK:true,data:listado})
     

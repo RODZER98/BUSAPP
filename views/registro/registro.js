@@ -72,6 +72,11 @@ formulario.addEventListener('submit', async (e) => {
       password: passwordInput.value,
       password2: matchInput.value,
     };
+    const response = await axios.post('/api/users', newUser);
+    console.log(response.status);
+    if (response.status === 200) {
+      window.location.href = '/login/';
+    }
     console.log(newUser);
     if (valname && valemail && valpass && valmatch) {
       const response = await axios.post('/api/users', newUser);
