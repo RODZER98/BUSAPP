@@ -163,9 +163,35 @@ userRouter.get('/validar-confirmacion/:email',async (req,res)=>{
 
       }
 
+      //verificar la contraseña
+      const  isMatch = await bcrypt.compare(password, usuario.password);
+
+      if (!isMatch) {
+        return res.status(400).json({ error: 'Contraseña incorrecta' });
+      }
+
+      const newUser = new User({
+        id: usuario.id,
+        name: usuario.name,
+        email: usuario.email,
+        rol: usuario.rol,
+      });
+
+      //crear token
+      const token = jwt.sign(
+      { userId: usuario._id, rol: usuario.rol },
+      "secret",{expiresIn: '1h'}
+    );
+
+    return res.status(200).json({token:token,rol:usuario.rol})
+     
+
     } catch (error) {
-      console.log(error);
+      res.status(400).json({error:'Error'})
     }
 })
+
+
+
 
 module.exports = userRouter;

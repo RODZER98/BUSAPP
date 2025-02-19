@@ -3,10 +3,21 @@ const mongoose = require('mongoose');
 const usersRouter = require('../controllers/users');
 //paso 2: definir el schema
 const userSchema = new mongoose.Schema({
-    rol:String,
+    rol:{
+        type:String,
+        enum: ['admin', 'user'],
+        default: 'user'
+    },
     name:String,
-    email:String,
-    password:String,
+    email: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    password:{
+        type: String,
+        required: true
+    },
     verified:{
         type:Boolean,
         default:false

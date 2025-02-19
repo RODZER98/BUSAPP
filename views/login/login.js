@@ -50,22 +50,48 @@ formulario.addEventListener('submit', async e => {
         // Almacenar el token en localStorage
         //localStorage.setItem('authToken', token);
 
-        if (arreglo.some(usuario => usuario.email === datosLogin.email)) {
-          const usuario = arreglo.map(usuario => usuario.email === datosLogin.email);
-          if (usuario.rol === 'admin') {
-            window.location.href = '/admin/';
-          } else {
-            window.location.href = '/perfil/';
-          }
+        if (arreglo.some(usuario => usuario.email === datosLogin.email)){       
+        //const usuario = arreglo.map(usuario => usuario.email === datosLogin.email && usuario.password)              
+          //console.log(usuario.rol)
+
+          const usuario = arreglo.map(usuario =>{
+            
+                if(usuario.email === datosLogin.email){
+
+                    if (usuario.rol === 'admin') {
+
+                      window.location.href = '/admin/';
+
+                    } else {
+
+                      window.location.href = '/perfil/';
+
+                    }
+
+                  }
+
+              });
+
         } else {
+
           alert('Usuario o contraseña incorrectos');
+
         }
+
       }
+
     } catch (error) {
+
       console.error('Error al iniciar sesión:', error.response ? error.response.data : error.message);
+
       alert('Error al iniciar sesión. Por favor, inténtelo de nuevo más tarde.');
+
     }
+
   } else {
+
     alert('Por favor, complete todos los campos');
+
   }
+
 });
