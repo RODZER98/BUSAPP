@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const userId = '_id';
 
     // Solicita los datos del usuario al servidor
-    axios.get(`http://localhost:5000/api/usuario/${userId}`)
+    axios.get(`http://localhost:5000/api/user/`,id)
         .then(response => {
             const usuario = response.data;
             actualizarDatosUsuario(usuario.name, usuario.email);
@@ -55,41 +55,19 @@ function activarQR() {
     const viajesDisponibles = document.getElementById('viajes-disponibles');
     let viajes = parseInt(viajesDisponibles.textContent);
     if (viajes > 0) {
-        // Activar la cámara y detectar el QR
-        const video = document.createElement('video');
-        const canvasElement = document.createElement('canvas');
-        const canvas = canvasElement.getContext('2d');
-        const qrResult = document.getElementById('qr-result');
-        let scanning = false;
+        // Activar el escáner de QR
+        const html5QrCode = new Html5Qrcode("reader");
 
-        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
-            scanning = true;
-            video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
-            video.srcObject = stream;
-            video.play();
-            tick();
-            scan();
-        });
-
-        function tick() {
-            canvasElement.height = video.videoHeight;
-            canvasElement.width = video.videoWidth;
-            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
-
-            scanning && requestAnimationFrame(tick);
-        }
-
-        function scan() {
-            try {
-                const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
-                const code = jsQR(imageData.data, imageData.width, imageData.height, {
-                    inversionAttempts: 'dontInvert',
-                });
-
-                if (code) {
-                    scanning = false;
-                    video.srcObject.getTracks().forEach(track => track.stop());
-                    qrResult.textContent = code.data;
+        html5QrCode.start(
+            { facingMode: "environment" }, // Utiliza la cámara trasera
+            {
+                fps: 10, // Frames por segundo para el escaneo
+                qrbox: { width: 250, height: 250 } // Tamaño del cuadro de escaneo
+            },
+            qrCodeMessage => {
+                // Código QR detectado
+                html5QrCode.stop().then(() => {
+                    document.getElementById('qr-result').textContent = qrCodeMessage;
                     viajes--;
                     viajesDisponibles.textContent = viajes;
                     alert('QR activado. Viaje descontado.');
@@ -104,13 +82,17 @@ function activarQR() {
                     .catch(error => {
                         console.error('Error al descontar el viaje en la base de datos:', error);
                     });
-                } else {
-                    scanning && setTimeout(scan, 300);
-                }
-            } catch (e) {
-                scanning && setTimeout(scan, 300);
+                }).catch(err => {
+                    console.error('Error al detener el escáner de QR:', err);
+                });
+            },
+            errorMessage => {
+                // Error o QR no detectado
+                console.warn('No se detectó ningún QR:', errorMessage);
             }
-        }
+        ).catch(err => {
+            console.error('Error al iniciar el escáner de QR:', err);
+        });
     } else {
         alert('No tienes viajes disponibles.');
     }
