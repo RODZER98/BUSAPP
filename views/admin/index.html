@@ -13,66 +13,79 @@
     <h1 class="text-xl font-bold text-white">Admin Panel</h1>
   </nav>
 
-        <!-- Modal for Usuarios -->
-        <div id="modalUsuarios" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-            <h2 class="text-2xl font-semibold mb-4">Administrar Usuarios</h2>
-            <p class="text-gray-600 mb-4">Aquí puedes gestionar cuentas y permisos de usuarios.</p>
-            <!-- Add your form or content here -->
-            <button id="closeModalUsuarios" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
-          </div>
-        </div>
+  <div id="listaUsuarios" class="container mx-auto mt-20"></div>
+    <div class="grid grid-cols-1 md:grid-cols-1 gap-4">
+      <div class="bg-gray-100 p-4 rounded shadow">
+        <h2 id="tituloListaUsuarios" class="text-lg font-semibold mb-2">Lista de Usuarios</h2>
+        <table id="tablaUsuarios" class="w-full text-center">
+          <thead>
+            <tr>
+              <th id="thNombre" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">Nombre</th>
+              <th id="thCorreo" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">Correo</th>
+              <th id="thRol" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">Rol</th>
+              <th id="thPassword" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">Password</th>
+              <th id="thAcciones" class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTabla">
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id="divSalir" class="flex justify-end mt-4"></div>
+      <button id="btnSalir" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Salir</button>
+    </div>
+  </div>
 
-        <!-- Modal for Informes -->
-        <div id="modalInformes" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-            <h2 class="text-2xl font-semibold mb-4">Ver y Generar Informes</h2>
-            <p class="text-gray-600 mb-4">Aquí puedes ver y generar informes.</p>
-            <!-- Add your form or content here -->
-            <button id="closeModalInformes" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
-          </div>
+  <!-- Modal para edición de usuario -->
+  <div id="formularioEdicion" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+    <div class="bg-white p-4 rounded shadow w-1/2">
+      <h2 class="text-lg font-semibold mb-2">Editar Usuario</h2>
+      <form id="formEditar">
+        <div class="mb-4">
+          <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
+          <input type="text" id="nombre" name="nombre" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
+        <div class="mb-4">
+          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo:</label>
+          <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+          <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Contraseña:</label>
+          <input type="password" id="password" name="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <div class="mb-4">
+          <label for="rol" class="block text-gray-700 text-sm font-bold mb-2">Rol:</label>
+          <select id="rol" name="rol" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="admin">Administrador</option>
+            <option value="user">Usuario</option>
+          </select>
+        </div>
+        <input type="hidden" id="id" name="id">
+        <div class="flex justify-end">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Guardar Cambios</button>
+          <button type="button" id="btnCancelar" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-        <!-- Modal for Configuración -->
-        <div id="modalConfiguracion" class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center hidden">
-          <div class="bg-white p-6 rounded-lg shadow-lg w-1/2">
-            <h2 class="text-2xl font-semibold mb-4">Configuración de la Aplicación</h2>
-            <p class="text-gray-600 mb-4">Aquí puedes configurar los ajustes de la aplicación.</p>
-            <!-- Add your form or content here -->
-            <button id="closeModalConfiguracion" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300">Cerrar</button>
-          </div>
-        </div>
-        <div class="container mx-auto mt-20"></div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button id="btnUsuarios" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300">
-              Administrar Usuarios
-            </button>
-            <button id="btnInformes" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition-colors duration-300">
-              Ver y Generar Informes
-            </button>
-            <button id="btnConfiguracion" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition-colors duration-300">
-              Configuración de la Aplicación
-            </button>
-          </div>
-        </div>
-
-        <footer id="pie" class="bg-gray-900 text-white p-4 text-center mt-4">
-          <div class="container mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-center">
+  
+  <footer id="pie" class="bg-gray-900 text-white p-4 text-center mt-16">
+    <div class="container mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-center">
         <p class="mb-2 md:mb-0">© 2025 BUSAPP. Todos los derechos reservados.</p>
         <div class="flex space-x-4">
           <a href="#" class="hover:text-gray-400">Política de Privacidad</a>
           <a href="#" class="hover:text-gray-400">Términos de Servicio</a>
           <a href="#" class="hover:text-gray-400">Contacto</a>
         </div>
-            </div>
-          </div>
-        </footer>
+      </div>
+    </div>
+  </footer>
 
   <script src="../components/nav.js"></script>
   <script type="module" src="adm.js"></script>
+  
 </body>
 </html>
-
-
-

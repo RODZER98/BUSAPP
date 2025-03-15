@@ -88,15 +88,15 @@ userRouter.post('/edit-user',async(req,res)=>{
     
   try {
         
-      const {name, email, password, password2, id} = req.body;
+      const {name, email, password, rol, id} = req.body;
         
-        if(!name && !email && !password && !password2 && !id){
+        if(!name && !email && !password && !rol && !id){
           
             return res.status(400).json({error:"Todos los campos son obligatorios"})
 
         }else{
 
-            const updateUser = await User.findOneAndUpdate({_id:id},{name:name, email:email, password:password})
+            const updateUser = await User.findOneAndUpdate({id:id},{name:name, email:email, password:password, rol:rol})
 
             await updateUser.save();
 
@@ -113,12 +113,13 @@ userRouter.post('/edit-user',async(req,res)=>{
 
 //eliminar usuario
 userRouter.post('/eliminar-user',async(req,res)=>{
-    
+  console.log('hola')
   const {id} = req.body;
+  //console.log(id);
 
     try{
         
-      const usuario = await User.deleteOne({_id:id})
+      const usuario = await User.deleteOne({id:id})
         
       return res.status(200).json({msg:"Se ha eliminado el usuario de forma correcta"})
     

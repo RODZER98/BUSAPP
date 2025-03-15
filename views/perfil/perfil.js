@@ -1,4 +1,4 @@
-/*document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     const formEditarPerfil = document.getElementById('form-editar-perfil');
     const datosUsuarioDiv = document.getElementById('datosUsuario');
 
@@ -17,7 +17,7 @@
         // Oculta el modal después de guardar los cambios
         document.getElementById('modal-editar-perfil').classList.add('hidden');
     });
-});*/
+});
 
 document.addEventListener('DOMContentLoaded', function() {
     const nombreUsuarioSpan = document.getElementById('nombre-usuario');
@@ -45,15 +45,73 @@ document.addEventListener('DOMContentLoaded', function() {
         
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    const activarQRBtn = document.getElementById('activar-qr-btn');
+    activarQRBtn.addEventListener('click', activarQR);
+});
+
 function activarQR() {
-            // Lógica para activar el QR y descontar un viaje del plan
-            const viajesDisponibles = document.getElementById('viajes-disponibles');
-            let viajes = parseInt(viajesDisponibles.textContent);
-            if (viajes > 0) {
-                viajes--;
-                viajesDisponibles.textContent = viajes;
-                alert('QR activado. Viaje descontado.');
-            } else {
-                alert('No tienes viajes disponibles.');
+    // Lógica para activar el QR y descontar un viaje del plan
+    const viajesDisponibles = document.getElementById('viajes-disponibles');
+    let viajes = parseInt(viajesDisponibles.textContent);
+    if (viajes > 0) {
+        // Activar la cámara y detectar el QR
+        const video = document.createElement('video');
+        const canvasElement = document.createElement('canvas');
+        const canvas = canvasElement.getContext('2d');
+        const qrResult = document.getElementById('qr-result');
+        let scanning = false;
+
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } }).then(function(stream) {
+            scanning = true;
+            video.setAttribute('playsinline', true); // required to tell iOS safari we don't want fullscreen
+            video.srcObject = stream;
+            video.play();
+            tick();
+            scan();
+        });
+
+        function tick() {
+            canvasElement.height = video.videoHeight;
+            canvasElement.width = video.videoWidth;
+            canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+
+            scanning && requestAnimationFrame(tick);
+        }
+
+        function scan() {
+            try {
+                const imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+                const code = jsQR(imageData.data, imageData.width, imageData.height, {
+                    inversionAttempts: 'dontInvert',
+                });
+
+                if (code) {
+                    scanning = false;
+                    video.srcObject.getTracks().forEach(track => track.stop());
+                    qrResult.textContent = code.data;
+                    viajes--;
+                    viajesDisponibles.textContent = viajes;
+                    alert('QR activado. Viaje descontado.');
+
+                    // Lógica para actualizar la base de datos con el viaje descontado
+                    axios.post('/api/actualizar-viajes', {
+                        viajesRestantes: viajes
+                    })
+                    .then(response => {
+                        console.log('Viaje descontado en la base de datos:', response.data);
+                    })
+                    .catch(error => {
+                        console.error('Error al descontar el viaje en la base de datos:', error);
+                    });
+                } else {
+                    scanning && setTimeout(scan, 300);
+                }
+            } catch (e) {
+                scanning && setTimeout(scan, 300);
             }
         }
+    } else {
+        alert('No tienes viajes disponibles.');
+    }
+}

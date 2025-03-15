@@ -1,149 +1,98 @@
-//paso 1: hacer el router
-//router: registrar POST, GET, DELETE
 const adminRouter = require('express').Router();
-const Admin = require('../models/admin'); 
+const Admin = require('../models/admin');
 
-//registrar la informacion que el usuario envia atraves del formulario
-adminRouter.post('/admin', (request, response) => {
-  console.log(request.body);
+// Registrar la información que el usuario envía a través del formulario
+adminRouter.get('/admin', async (request, response) => {
   const { name, email, password, password2 } = request.body;
-  console.log(name, email, password, password2);
 
   if (!name || !email || !password || !password2) {
-    //console.log('si')
-    return response
-      .status(400)
-      .json({ error: 'Todos los campos son requeridos' });
-  } else {
+    return response.status(400).json({ error: 'Todos los campos son requeridos' });
+  }
 
-    //guardar en la bd
-    let administrador = new Admin();
-
-    administrador.name = name;
-    administrador.email = email;
-    administrador.password = password;
-
-    async function guardarAdministrador() {
-        await administrador.save();
-        const administradores = await Admin.find();
-        console.log(administradores)
-    }
-
-    guardarAdministrador().catch(console.error);
-
-
-    return response
-      .status(200)
-      .json({ msg: 'Se ha creado el nuevo usuario correctamente' });
+  try {
+    let administrador = new Admin({ name, email, password });
+    await administrador.save();
+    return response.status(200).json({ msg: 'Se ha creado el nuevo usuario correctamente' });
+  } catch (error) {
+    return response.status(500).json({ error: 'Error al guardar el administrador' });
   }
 });
 
-//consultar usuario
-adminRouter.get('/consultar-admin',async(req,res)=>{
-
-
-
-})
-
-//obtener lista de usuarios
-adminRouter.get('/lista-admins',async(req,res)=>{
-    
-  try{
-        
-      const listado = await Admin.find()
-        
-      return res.status(200).json({textOK:true,data:listado})
-    
-      }catch(error){
-        
-      return res.status(400).json({error:'Ha ocurrido un error'})
-    
-      }
-})
-
-//editar usuario
-adminRouter.post('/edit-admin',async(req,res)=>{
-    
+// Consultar usuario específico
+adminRouter.get('/consultar-admin/:id', async (req, res) => {
   try {
-        
-      const {name, email, password, password2, id} = req.body;
-        
-        if(!name && !email && !password && !password2 && !id){
-          
-            return res.status(400).json({error:"Todos los campos son obligatorios"})
-
-        }else{
-
-            const updateAdmin = await Admin.findOneAndUpdate({_id:id},{name:name, email:email, password:password})
-
-            await updateAdmin.save();
-
-            return res.status(200).json({msg:"Se ha editado el usuario de forma correcta"})
-
-        }
-
-        }catch(error){
-            
-          return res.status(400).json({error:"error"})
-
-        }
-})
-
-//eliminar usuario
-adminRouter.post('/eliminar-admin',async(req,res)=>{
-    
-  const {id} = req.body;
-
-    try{
-        
-      const administrador = await Admin.deleteOne({_id:id})
-        
-      return res.status(200).json({msg:"Se ha eliminado el usuario de forma correcta"})
-    
-    }catch(error){
-        
-      return res.status(400).json({error:'Error'})
-    
+    const administrador = await Admin.findById(req.params.id);
+    if (!administrador) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-})
+    return res.status(200).json(administrador);
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al consultar el administrador' });
+  }
+});
 
-//verificar el registro
-adminRouter.get('/validar-confirmacion/:email',async (req,res)=>{
+// Obtener lista de usuarios
+adminRouter.get('/lista-admins', async (req, res) => {
+  try {
+    const listado = await Admin.find();
+    return res.status(200).json({ textOK: true, data: listado });
+  } catch (error) {
+    return res.status(400).json({ error: 'Ha ocurrido un error' });
+  }
+});
 
-    try {
-      
-      //obtener los parametros de request
-      const {email} = res.param;
+// Editar usuario
+adminRouter.post('/edit-admin', async (req, res) => {
+  const { name, email, password, password2, id } = req.body;
 
-      console.log(email)
+  if (!name || !email || !password || !password2 || !id) {
+    return res.status(400).json({ error: 'Todos los campos son obligatorios' });
+  }
 
-      //verificar si el usuario existe
-      const administrador = await Admin.findOne({email:email})
-
-      if(!administrador){
-
-        res.send('Error: El usuario no esta registrado')
-
-      }else if(administrador.verified){
-
-        res.send('Error: El usuario ya esta verificado')
-
-      }else{
-
-        //actualizar verificacion
-        const actualizarAdministrador = await Admin.findByIdAndUpdate({email:email},{verified:true})
-
-        await actualizarAdministrador.save();
-
-        //redireccionar
-        //return res.redirect()
-        //FALTA CREAR FRONT DE CONFIRMAR
-
-      }
-
-    } catch (error) {
-      console.log(error);
+  try {
+    const updateAdmin = await Admin.findByIdAndUpdate(id, { name, email, password }, { new: true });
+    if (!updateAdmin) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
-})
+    return res.status(200).json({ msg: 'Se ha editado el usuario de forma correcta' });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al editar el administrador' });
+  }
+});
+
+// Eliminar usuario
+adminRouter.post('/eliminar-admin', async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const administrador = await Admin.findByIdAndDelete(id);
+    if (!administrador) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
+    }
+    return res.status(200).json({ msg: 'Se ha eliminado el usuario de forma correcta' });
+  } catch (error) {
+    return res.status(500).json({ error: 'Error al eliminar el administrador' });
+  }
+});
+
+// Verificar el registro
+adminRouter.get('/validar-confirmacion/:email', async (req, res) => {
+  const { email } = req.params;
+
+  try {
+    const administrador = await Admin.findOne({ email });
+    if (!administrador) {
+      return res.status(404).send('Error: El usuario no está registrado');
+    } else if (administrador.verified) {
+      return res.status(400).send('Error: El usuario ya está verificado');
+    } else {
+      administrador.verified = true;
+      await administrador.save();
+      return res.status(200).send('Usuario verificado correctamente');
+    }
+  } catch (error) {
+    return res.status(500).send('Error al verificar el usuario');
+  }
+});
 
 module.exports = adminRouter;
